@@ -1,0 +1,319 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MPI - Kemukjizatan Al-Quran</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        arabic: ['Amiri', 'serif'],
+                    },
+                    colors: {
+                        emerald: { 50: '#f3f6f1', 100: '#e1e9db', 200: '#c5d3bc', 300: '#9eb490', 400: '#799169', 500: '#5e754f', 600: '#485b3c', 700: '#394830', 800: '#2f3b28', 900: '#273122' },
+                        slate: { 50: '#fdfcf9', 100: '#f8f5eb', 200: '#efe6d3', 300: '#e3d2b3', 400: '#d2b68c', 500: '#be9965', 600: '#ad824f', 700: '#906740', 800: '#775438', 900: '#61442f' },
+                        gold: { 50: '#fcfaf0', 100: '#f7f2d9', 200: '#efe2ae', 300: '#e5cd7c', 400: '#dcb14b', 500: '#d49629', 600: '#c07621', 700: '#a05820', 800: '#834521', 900: '#6e3920' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            overflow-x: hidden; 
+            background-color: #f8f5eb; 
+            color: #273122;
+        }
+        .glass { background: rgba(253, 252, 249, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(227, 210, 179, 0.5); }
+        
+        /* Simple Background Pattern */
+        .islamic-pattern {
+            background-image: radial-gradient(#d2b68c 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: -1;
+        }
+
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        
+        .hidden-section { display: none; }
+    </style>
+</head>
+<body class="min-h-screen relative">
+    <div class="islamic-pattern"></div>
+
+    <!-- MAIN CONTAINER -->
+    <div class="max-w-2xl mx-auto p-4 md:p-8">
+        
+        <!-- HEADER -->
+        <header class="text-center mb-8 glass p-6 rounded-2xl shadow-sm fade-in">
+            <h1 class="text-3xl md:text-4xl font-bold text-emerald-800 font-arabic mb-2">القرآن الكريم</h1>
+            <h2 class="text-xl md:text-2xl font-semibold text-slate-800">MPI Kemukjizatan Al-Quran</h2>
+            <p class="text-slate-600 mt-2 text-sm">Media Pembelajaran Interaktif</p>
+        </header>
+
+        <!-- SECTION 1: MAIN MENU -->
+        <div id="section-menu" class="grid grid-cols-1 md:grid-cols-2 gap-4 fade-in">
+            <button onclick="showSection('section-form')" class="glass hover:bg-emerald-50 transition-all p-8 rounded-2xl flex flex-col items-center justify-center gap-4 text-emerald-700 shadow-sm border-emerald-200">
+                <i class="fas fa-gamepad text-4xl mb-2"></i>
+                <span class="text-lg font-bold">Mulai Berlatih</span>
+                <span class="text-xs text-center text-slate-500">Uji pemahamanmu tentang kemukjizatan Al-Quran</span>
+            </button>
+            
+            <button onclick="alert('Fitur Materi dapat dikembangkan di sini.')" class="glass hover:bg-slate-50 transition-all p-8 rounded-2xl flex flex-col items-center justify-center gap-4 text-slate-700 shadow-sm">
+                <i class="fas fa-book-open text-4xl mb-2"></i>
+                <span class="text-lg font-bold">Materi Belajar</span>
+                <span class="text-xs text-center text-slate-500">Eksplorasi ilmu kemukjizatan Al-Quran</span>
+            </button>
+        </div>
+
+        <!-- SECTION 2: STUDENT FORM -->
+        <div id="section-form" class="hidden-section glass p-6 md:p-8 rounded-2xl shadow-sm">
+            <h3 class="text-xl font-bold text-emerald-800 mb-4 border-b pb-2 border-slate-200">Data Siswa</h3>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Nama Lengkap</label>
+                    <input type="text" id="studentName" class="w-full p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-400 focus:outline-none" placeholder="Masukkan nama...">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Kelas</label>
+                    <select id="studentClass" class="w-full p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-400 focus:outline-none">
+                        <option value="">Pilih Kelas...</option>
+                        <option value="X">Kelas X</option>
+                        <option value="XI">Kelas XI</option>
+                        <option value="XII">Kelas XII</option>
+                    </select>
+                </div>
+                <div class="pt-4 flex gap-3">
+                    <button onclick="showSection('section-menu')" class="flex-1 p-3 rounded-xl border-2 border-slate-300 text-slate-600 font-semibold hover:bg-slate-100 transition">Kembali</button>
+                    <button onclick="startQuiz()" class="flex-1 p-3 rounded-xl bg-emerald-600 text-white font-semibold hover:bg-emerald-700 shadow-md transition">Mulai Kuis</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: QUIZ / BERLATIH -->
+        <div id="section-quiz" class="hidden-section glass p-6 md:p-8 rounded-2xl shadow-sm">
+            <div class="flex justify-between items-center mb-6">
+                <span id="quizProgress" class="text-sm font-semibold text-emerald-600 bg-emerald-100 px-3 py-1 rounded-full">Soal 1/5</span>
+                <span class="text-sm text-slate-500" id="studentInfoDisplay"></span>
+            </div>
+            
+            <h4 id="questionText" class="text-lg md:text-xl font-medium text-slate-800 mb-6 leading-relaxed">Pertanyaan akan muncul di sini?</h4>
+            
+            <div id="optionsContainer" class="space-y-3">
+                <!-- Options injected by JS -->
+            </div>
+        </div>
+
+        <!-- SECTION 4: RESULTS -->
+        <div id="section-result" class="hidden-section glass p-6 md:p-8 rounded-2xl shadow-sm text-center">
+            <div class="w-20 h-20 mx-auto bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-4xl mb-4 shadow-inner">
+                <i class="fas fa-check"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-slate-800 mb-2">Kuis Selesai!</h3>
+            <p class="text-slate-600 mb-6" id="resultMessage">Menyimpan hasil Anda...</p>
+            
+            <div class="grid grid-cols-2 gap-4 mb-6">
+                <div class="bg-emerald-50 p-4 rounded-xl border border-emerald-100">
+                    <span class="block text-3xl font-bold text-emerald-600" id="scoreBenar">0</span>
+                    <span class="text-sm text-slate-500">Jawaban Benar</span>
+                </div>
+                <div class="bg-red-50 p-4 rounded-xl border border-red-100">
+                    <span class="block text-3xl font-bold text-red-500" id="scoreSalah">0</span>
+                    <span class="text-sm text-slate-500">Jawaban Salah</span>
+                </div>
+            </div>
+
+            <div id="syncStatus" class="p-3 mb-6 rounded-lg text-sm flex items-center justify-center gap-2 bg-slate-100 text-slate-600">
+                <i class="fas fa-spinner fa-spin"></i> Menyinkronkan ke Database...
+            </div>
+
+            <button onclick="resetApp()" class="w-full p-3 rounded-xl bg-slate-800 text-white font-semibold hover:bg-slate-900 shadow-md transition">Kembali ke Beranda</button>
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // ==========================================
+        // 1. DEKLARASI URL GOOGLE APPS SCRIPT
+        // ==========================================
+        // Ganti URL di bawah ini dengan URL Web App Anda setelah di-deploy
+        const GAS_URL = "URL_GAS_ANDA_DISINI"; 
+        
+        // ==========================================
+        // DATA SOAL
+        // ==========================================
+        const quizData = [
+            {
+                id: 1,
+                question: "Aspek kemukjizatan Al-Quran yang berkaitan dengan keindahan susunan kata, gaya bahasa, dan kedalaman maknanya disebut...",
+                options: ["I'jaz Ilmi (Ilmu Pengetahuan)", "I'jaz Lughawi (Bahasa)", "I'jaz Tasyri'i (Syariat)", "I'jaz Ghaibi (Berita Gaib)"],
+                correct: "I'jaz Lughawi (Bahasa)"
+            },
+            {
+                id: 2,
+                question: "Al-Quran memberikan isyarat tentang teori penciptaan alam semesta yang di kemudian hari dibenarkan oleh sains modern (seperti Big Bang). Ini merupakan bukti dari...",
+                options: ["Kemukjizatan Bahasa", "Kemukjizatan Hukum", "Kemukjizatan Ilmiah", "Kemukjizatan Sejarah"],
+                correct: "Kemukjizatan Ilmiah"
+            },
+            {
+                id: 3,
+                question: "Surah yang menantang bangsa Arab (dan manusia seluruhnya) untuk membuat semisal Al-Quran walaupun hanya satu surah adalah...",
+                options: ["Al-Baqarah", "Yasin", "Al-Kahfi", "Al-Mulk"],
+                correct: "Al-Baqarah"
+            }
+        ];
+
+        // ==========================================
+        // STATE MANAGEMENT
+        // ==========================================
+        let currentStudent = { name: "", class: "" };
+        let currentQuestionIndex = 0;
+        let score = { benar: 0, salah: 0 };
+        let studentAnswersDetail = []; 
+
+        // ==========================================
+        // UI FUNCTIONS
+        // ==========================================
+        function showSection(sectionId) {
+            document.querySelectorAll('.glass').forEach(el => {
+                if(el.id && el.id.startsWith('section-')) el.classList.add('hidden-section');
+            });
+            const target = document.getElementById(sectionId);
+            if(target) target.classList.remove('hidden-section');
+        }
+
+        function startQuiz() {
+            const nameInput = document.getElementById('studentName').value.trim();
+            const classInput = document.getElementById('studentClass').value;
+            
+            if(!nameInput || !classInput) {
+                alert("Mohon lengkapi Nama dan Kelas terlebih dahulu.");
+                return;
+            }
+
+            currentStudent = { name: nameInput, class: classInput };
+            document.getElementById('studentInfoDisplay').innerText = `${nameInput} (${classInput})`;
+            
+            currentQuestionIndex = 0;
+            score = { benar: 0, salah: 0 };
+            studentAnswersDetail = [];
+            
+            loadQuestion();
+            showSection('section-quiz');
+        }
+
+        function loadQuestion() {
+            const q = quizData[currentQuestionIndex];
+            document.getElementById('quizProgress').innerText = `Soal ${currentQuestionIndex + 1} / ${quizData.length}`;
+            document.getElementById('questionText').innerText = q.question;
+            
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = "";
+            
+            q.options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left p-4 rounded-xl border-2 border-slate-200 hover:border-emerald-400 hover:bg-emerald-50 transition-all font-medium text-slate-700 bg-white";
+                btn.innerText = opt;
+                btn.onclick = () => handleAnswer(opt, q.correct, q.question);
+                container.appendChild(btn);
+            });
+        }
+
+        function handleAnswer(selected, correct, questionText) {
+            const isCorrect = (selected === correct);
+            if(isCorrect) score.benar++;
+            else score.salah++;
+
+            studentAnswersDetail.push({
+                soal: questionText,
+                jawaban_siswa: selected,
+                kunci_jawaban: correct,
+                status: isCorrect ? "BENAR" : "SALAH"
+            });
+
+            currentQuestionIndex++;
+            if(currentQuestionIndex < quizData.length) {
+                loadQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function finishQuiz() {
+            document.getElementById('scoreBenar').innerText = score.benar;
+            document.getElementById('scoreSalah').innerText = score.salah;
+            showSection('section-result');
+            sendDataToGAS();
+        }
+
+        function resetApp() {
+            document.getElementById('studentName').value = "";
+            document.getElementById('studentClass').value = "";
+            showSection('section-menu');
+        }
+
+        // ==========================================
+        // BACKEND INTEGRATION (SEND TO GOOGLE SHEETS)
+        // ==========================================
+        async function sendDataToGAS() {
+            const statusDiv = document.getElementById('syncStatus');
+            
+            if(GAS_URL === "https://script.google.com/macros/s/AKfycbxRw2s5bbpjiobxVP8EW4z49s6lUd-1-kk8d5TGb4ojnsCDdpIHi0N8lv7TmgCJpPcU7Q/exec") {
+                statusDiv.className = "p-3 mb-6 rounded-lg text-sm flex items-center justify-center gap-2 bg-amber-100 text-amber-700";
+                statusDiv.innerHTML = "<i class='fas fa-exclamation-triangle'></i> URL GAS belum disetting. Data tidak disimpan.";
+                return;
+            }
+
+            const payload = {
+                nama: currentStudent.name,
+                kelas: currentStudent.class,
+                benar: score.benar,
+                salah: score.salah,
+                detail: studentAnswersDetail
+            };
+
+            try {
+                // Menggunakan fetch dengan Content-Type text/plain untuk menghindari CORS Preflight
+                const response = await fetch(GAS_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                    body: JSON.stringify(payload)
+                });
+                
+                const result = await response.json();
+                
+                if(result.status === "success") {
+                    statusDiv.className = "p-3 mb-6 rounded-lg text-sm flex items-center justify-center gap-2 bg-emerald-100 text-emerald-700";
+                    statusDiv.innerHTML = "<i class='fas fa-check-circle'></i> Data berhasil disinkronkan ke Database!";
+                } else {
+                    throw new Error("Gagal dari server");
+                }
+            } catch (error) {
+                console.error("Error saving data:", error);
+                statusDiv.className = "p-3 mb-6 rounded-lg text-sm flex items-center justify-center gap-2 bg-red-100 text-red-700";
+                statusDiv.innerHTML = "<i class='fas fa-times-circle'></i> Gagal menyinkronkan data. Periksa koneksi internet.";
+            }
+        }
+    </script>
+</body>
+</html>
+
+```
